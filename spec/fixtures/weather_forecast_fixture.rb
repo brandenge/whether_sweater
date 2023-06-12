@@ -103,7 +103,6 @@ module WeatherForecastFixture
       {
         time: '07:00',
         temperature: 37,
-        conditions: ,
         conditions: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },

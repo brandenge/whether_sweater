@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.poro WeatherForecast do
+RSpec.describe WeatherForecast, type: :poros do
   subject(:weather_forecast) do
      create(:weather_forecast, WeatherForecastFixture::ATTRIBUTES)
   end
@@ -36,9 +36,9 @@ RSpec.poro WeatherForecast do
 
       expect(weather_forecast.hourly_weather.count).to eq(24)
       expect(weather_forecast.hourly_weather.first[:time]).to eq('00:00')
-      expect(weather_forecast.hourly_weather.first[:temperature]).to eq('00:00').first
-      expect(weather_forecast.hourly_weather.first[:conditions]).to eq('00:00').first
-      expect(weather_forecast.hourly_weather.first[:icon]).to eq('00:00')
+      expect(weather_forecast.hourly_weather.first[:temperature]).to eq(40)
+      expect(weather_forecast.hourly_weather.first[:conditions]).to eq('Partly Cloudy')
+      expect(weather_forecast.hourly_weather.first[:icon]).to eq('partly-cloudy-night.png')
     end
   end
 end
