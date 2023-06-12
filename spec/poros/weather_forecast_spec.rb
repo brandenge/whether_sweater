@@ -35,10 +35,10 @@ RSpec.poro WeatherForecast do
       expect(weather_forecast.daily_weather.first[:icon]).to eq('sunny.png')
 
       expect(weather_forecast.hourly_weather.count).to eq(24)
-      expect(weather_forecast.hourly_weather[:time]).to eq('00:00')
-      expect(weather_forecast.hourly_weather[:temperature]).to eq('00:00').first
-      expect(weather_forecast.hourly_weather[:conditions]).to eq('00:00').first
-      expect(weather_forecast.hourly_weather[:icon]).to eq('00:00')
+      expect(weather_forecast.hourly_weather.first[:time]).to eq('00:00')
+      expect(weather_forecast.hourly_weather.first[:temperature]).to eq('00:00').first
+      expect(weather_forecast.hourly_weather.first[:conditions]).to eq('00:00').first
+      expect(weather_forecast.hourly_weather.first[:icon]).to eq('00:00')
     end
   end
 end
