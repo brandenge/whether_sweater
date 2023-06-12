@@ -14,7 +14,7 @@ RSpec.describe WeatherForecast, type: :poros do
   describe 'attributes' do
     it 'has attributes' do
       expect(weather_forecast.id).to eq(nil)
-      expect(weather_forecast.name).to eq('forecast')
+      expect(weather_forecast.type).to eq('forecast')
 
       expect(weather_forecast.current_weather[:last_updated]).to eq('2023-04-18 16:30')
       expect(weather_forecast.current_weather[:temperature]).to eq(55)
