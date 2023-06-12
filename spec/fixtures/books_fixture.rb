@@ -9,7 +9,7 @@ module BooksFixture
           summary: 'Cloudy with a chance of meatballs',
           temperature: '83 F'
         },
-        total_books_found: 172,
+        total_books_found: 758,
         books: [
           {
             isbn: [
@@ -23,12 +23,22 @@ module BooksFixture
           },
           {
             isbn: [
-              '9780883183663',
-              '0883183668'
+              '0607620056',
+              '9780607620054'
             ],
-            title: 'Photovoltaic safety, Denver, CO, 1988',
+            title: 'Denver west, CO and Bailey, CO: Denver, CO',
             publisher: [
-              'American Institute of Physics'
+              'USGS Branch of Distribution'
+            ]
+          },
+          {
+            isbn: [
+              '9780607620047',
+              '0607620048'
+            ],
+            title: 'Denver East, CO and Castle Rock, CO: Denver, CO',
+            publisher: [
+              'USGS Branch of Distribution'
             ]
           }
         ]
