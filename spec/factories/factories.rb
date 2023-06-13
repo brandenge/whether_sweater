@@ -41,7 +41,7 @@ FactoryBot.define do
 
       time { "00:00" }
       temperature { Faker::Number.between(from: current_temperature - 5, to: current_temperature + 5) }
-      conditions { ['Sunny', 'Rain', 'Snow', 'Partly Cloudy'].sample }
+      condition { ['Sunny', 'Rain', 'Snow', 'Partly Cloudy'].sample }
       icon { ['sunny.png', 'rain.png', 'snow.png', 'partly-cloudy.png'].sample }
 
       initialize_with { new(attributes) }

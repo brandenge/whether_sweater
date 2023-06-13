@@ -15,7 +15,7 @@ RSpec.describe HourlyWeather, type: :poros do
     it 'has attributes' do
       expect(hourly_weather.time).to eq('00:00')
       expect(hourly_weather.temperature).to eq(40)
-      expect(hourly_weather.conditions).to eq('Partly Cloudy')
+      expect(hourly_weather.condition).to eq('Partly Cloudy')
       expect(hourly_weather.icon).to eq('partly-cloudy-night.png')
     end
   end

@@ -61,145 +61,145 @@ module WeatherForecastFixture
       {
         time: '00:00',
         temperature: 40,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '01:00',
         temperature: 39,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '02:00',
         temperature: 36,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '03:00',
         temperature: 33,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '04:00',
         temperature: 30,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '05:00',
         temperature: 33,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '06:00',
         temperature: 36,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '07:00',
         temperature: 37,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '08:00',
         temperature: 40,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '09:00',
         temperature: 43,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '10:00',
         temperature: 47,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '11:00',
         temperature: 51,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '12:00',
         temperature: 55,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '13:00',
         temperature: 59,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '14:00',
         temperature: 63,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '15:00',
         temperature: 63,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '16:00',
         temperature: 60,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '17:00',
         temperature: 59,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '18:00',
         temperature: 57,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '19:00',
         temperature: 53,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-day.png'
       },
       {
         time: '20:00',
         temperature: 46,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '21:00',
         temperature: 43,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '22:00',
         temperature: 42,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       },
       {
         time: '23:00',
         temperature: 41,
-        conditions: 'Partly Cloudy',
+        condition: 'Partly Cloudy',
         icon: 'partly-cloudy-night.png'
       }
     ]

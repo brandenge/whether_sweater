@@ -35,7 +35,7 @@ RSpec.describe WeatherForecast, type: :poros do
       expect(weather_forecast.hourly_weather.count).to eq(24)
       expect(weather_forecast.hourly_weather.first.time).to eq('00:00')
       expect(weather_forecast.hourly_weather.first.temperature).to eq(40)
-      expect(weather_forecast.hourly_weather.first.conditions).to eq('Partly Cloudy')
+      expect(weather_forecast.hourly_weather.first.condition).to eq('Partly Cloudy')
       expect(weather_forecast.hourly_weather.first.icon).to eq('partly-cloudy-night.png')
     end
   end

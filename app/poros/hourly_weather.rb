@@ -1,13 +1,13 @@
 class HourlyWeather
   attr_reader :time,
               :temperature,
-              :conditions,
+              :condition,
               :icon
 
   def initialize(data)
     @time = data[:time]
     @temperature = data[:temperature]
-    @conditions = data[:conditions]
+    @condition = data[:condition]
     @icon = data[:icon]
   end
 end
