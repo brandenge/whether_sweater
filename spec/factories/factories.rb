@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :weather_forecast do
     skip_create
 
