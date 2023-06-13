@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe WeatherForecast, type: :poros do
-  subject(:weather_forecast) { create_weather_forecast_fixture }
+  subject(:weather_forecast) do
+    WeatherForecast.new(**WeatherForecastFixture::ATTRIBUTES)
+  end
 
   describe '#initialize' do
     it 'exists' do
