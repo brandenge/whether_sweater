@@ -16,6 +16,27 @@ require 'webmock/rspec'
 
 require './spec/fixtures/weather_forecast_fixture.rb'
 include WeatherForecastFixture
+require './spec/fixtures/current_weather_fixture.rb'
+include CurrentWeatherFixture
+require './spec/fixtures/daily_weather_fixture.rb'
+include DailyWeatherFixture
+require './spec/fixtures/hourly_weather_fixture.rb'
+include HourlyWeatherFixture
+
+def create_weather_forecast_fixture
+  fixture = WeatherForecastFixture::ATTRIBUTES
+
+  current_weather = CurrentWeather.new(fixture[:current_weather])
+  daily_weather = fixture[:daily_weather].map do |weather_data|
+    DailyWeather.new(weather_data)
+  end
+  hourly_weather = fixture[:hourly_weather].map do |weather_data|
+    HourlyWeather.new(weather_data)
+  end
+
+  WeatherForecast.new(current_weather, daily_weather, hourly_weather)
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
