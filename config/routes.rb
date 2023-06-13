@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     end
 
     namespace :v1 do
-      get 'activities' => 'activities#search', as: 'activities'
+      get 'book-search' => 'books#search'
+      get 'activities' => 'activities#search'
     end
   end
 end

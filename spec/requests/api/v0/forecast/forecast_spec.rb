@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes } do
   it 'returns the weather forecast for the given city' do
-    get '/api/v0/forecast?location=cincinatti,oh'
+    get api_v0_forecast_path({ location: 'cincinatti,oh' })
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
