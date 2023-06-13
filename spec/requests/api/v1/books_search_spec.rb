@@ -9,8 +9,8 @@ RSpec.describe 'Books Search', type: :request, vcr: { record: :new_episodes } do
 
     books = JSON.parse(response.body, symbolize_names: true)
 
-    expect(books).to have_key(:data)
     expect(books).to be_a(Hash)
+    expect(books).to have_key(:data)
 
     expect(books[:data]).to have_key(:id)
     expect(books[:data]).to have_key(:type)
