@@ -1,4 +1,4 @@
-class WeatherService
+class WeatherForecastService
   BASE_URL = 'https://api.weatherapi.com'.freeze
 
   def get_forecast(coordinates)
@@ -58,7 +58,8 @@ class WeatherService
       headers: { 'Content-Type' => 'application/json' },
       params: {
         key: ENV['WEATHER_API_KEY'],
-        q: param
+        q: param,
+        days: 5
       }
     )
   end
