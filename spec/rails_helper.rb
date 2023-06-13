@@ -22,6 +22,8 @@ require './spec/fixtures/daily_weather_fixture.rb'
 include DailyWeatherFixture
 require './spec/fixtures/hourly_weather_fixture.rb'
 include HourlyWeatherFixture
+require './spec/fixtures/activity_fixture.rb'
+include ActivityFixture
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

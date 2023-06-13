@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     namespace :v0 do
       get 'forecast' => 'forecast#search'
     end
+
+    namespace :v1 do
+      get 'activities' => 'activities#search', as: 'activities'
+    end
   end
 end

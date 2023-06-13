@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Activites', type: :request do
-  describe 'it returns a collection of activities appropriate for the weather' do
-    get activities_path({ destination: 'chicago,il' })
-
+  it 'returns a collection of activities appropriate for the weather' do
+    # get api_v1_activities_path({ destination: 'chicago,il' })
+    get '/api/v1/activities?destination=chicago,il'
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
