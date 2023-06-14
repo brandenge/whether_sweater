@@ -1,7 +1,7 @@
 class WeatherForecastSerializer
   include JSONAPI::Serializer
 
-  set_id { |_| nil }
+  set_id nil
 
   set_type :forecast
 
