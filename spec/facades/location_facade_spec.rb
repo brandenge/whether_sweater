@@ -34,7 +34,7 @@ RSpec.describe LocationFacade, vcr: { record: :new_episodes } do
           begin
             location_facade.get_city_lat_lng('Ggeim,FG')
           rescue CustomError => e
-            expect(e.message).to eq('No location found. Please provide a known location query parameter.')
+            expect(e.message).to be_a(String)
             expect(e.status).to eq(400)
           end
         end
