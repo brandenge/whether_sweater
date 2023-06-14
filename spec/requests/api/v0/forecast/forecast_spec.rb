@@ -33,6 +33,15 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
       current_weather = data[:attributes][:current_weather]
       expect(current_weather).to be_a(Hash)
       expect(current_weather.keys.count).to eq(8)
+      expect(current_weather).to have_key(:last_updated)
+      expect(current_weather).to have_key(:temperature)
+      expect(current_weather).to have_key(:feels_like)
+      expect(current_weather).to have_key(:humidity)
+      expect(current_weather).to have_key(:uvi)
+      expect(current_weather).to have_key(:visibility)
+      expect(current_weather).to have_key(:condition)
+      expect(current_weather).to have_key(:icon)
+
       expect(current_weather[:last_updated]).to be_a(String)
       expect(current_weather[:temperature]).to be_a(Numeric)
       expect(current_weather[:feels_like]).to be_a(Numeric)
@@ -43,6 +52,8 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
       expect(current_weather[:icon]).to be_a(String)
 
       expect(data[:attributes][:daily_weather]).to be_an(Array)
+      expect(data[:attributes][:daily_weather].count).to eq(5)
+
       data[:attributes][:daily_weather].each do |daily_weather|
         expect(daily_weather).to be_a(Hash)
         expect(daily_weather.keys.count).to eq(7)
@@ -64,6 +75,8 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
       end
 
       expect(data[:attributes][:hourly_weather]).to be_an(Array)
+      expect(data[:attributes][:hourly_weather].count).to eq(24)
+
       data[:attributes][:hourly_weather].each do |hourly_weather|
         expect(hourly_weather).to be_a(Hash)
         expect(hourly_weather.keys.count).to eq(4)

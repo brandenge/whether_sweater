@@ -1,6 +1,6 @@
 class WeatherForecastService
-  def get_forecast(coordinates)
-    param = "#{coordinates[:lat]},#{coordinates[:lng]}"
+  def get_forecast(lat, lng)
+    param = "#{lat},#{lng}"
     weather_data = get_url('/v1/forecast.json?', param)
     if weather_data.has_key?(:error)
       raise CustomError.new(weather_data[:error][:message], status: 400)
