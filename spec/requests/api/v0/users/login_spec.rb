@@ -52,16 +52,8 @@ RSpec.describe 'Create User', type: :request, vcr: { record: :new_episodes } do
 
       error = JSON.parse(response.body, symbolize_names: true)
 
-      expect(error).to be_a(Hash)
-      expect(error.keys.count).to eq(1)
-      expect(error).to have_key(:errors)
-
-      expect(error[:errors]).to be_an(Array)
-      expect(error[:errors].count).to eq(1)
-      expect(error[:errors].first).to be_a(Hash)
-      expect(error[:errors].first.keys.count).to eq(1)
-      expect(error[:errors].first).to have_key(:detail)
-      expect(error[:errors].first[:detail]).to be_a(String)
+      check_valid_error_response(error)
+      
       expect(error[:errors].first[:detail]).to eq('Invalid request. Missing one or more request fields.')
     end
 
@@ -78,16 +70,8 @@ RSpec.describe 'Create User', type: :request, vcr: { record: :new_episodes } do
 
       error = JSON.parse(response.body, symbolize_names: true)
 
-      expect(error).to be_a(Hash)
-      expect(error.keys.count).to eq(1)
-      expect(error).to have_key(:errors)
+      check_valid_error_response(error)
 
-      expect(error[:errors]).to be_an(Array)
-      expect(error[:errors].count).to eq(1)
-      expect(error[:errors].first).to be_a(Hash)
-      expect(error[:errors].first.keys.count).to eq(1)
-      expect(error[:errors].first).to have_key(:detail)
-      expect(error[:errors].first[:detail]).to be_a(String)
       expect(error[:errors].first[:detail]).to eq('Invalid request. The password and password confirmation do not match.')
     end
   end

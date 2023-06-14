@@ -25,6 +25,19 @@ include HourlyWeatherFixture
 require './spec/fixtures/activity_fixture.rb'
 include ActivityFixture
 
+def check_valid_error_response(error)
+  expect(error).to be_a(Hash)
+  expect(error.keys.count).to eq(1)
+  expect(error).to have_key(:errors)
+
+  expect(error[:errors]).to be_an(Array)
+  expect(error[:errors].count).to eq(1)
+  expect(error[:errors].first).to be_a(Hash)
+  expect(error[:errors].first.keys.count).to eq(1)
+  expect(error[:errors].first).to have_key(:detail)
+  expect(error[:errors].first[:detail]).to be_a(String)
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

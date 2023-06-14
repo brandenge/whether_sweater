@@ -100,18 +100,11 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
 
-      weather_forecast = JSON.parse(response.body, symbolize_names: true)
+      error = JSON.parse(response.body, symbolize_names: true)
 
-      expect(weather_forecast).to be_a(Hash)
-      expect(weather_forecast.keys.count).to eq(1)
-      expect(weather_forecast).to have_key(:errors)
+      check_valid_error_response(error)
 
-      expect(weather_forecast[:errors]).to be_an(Array)
-      expect(weather_forecast[:errors].count).to eq(1)
-      expect(weather_forecast[:errors].first).to be_a(Hash)
-      expect(weather_forecast[:errors].first.keys.count).to eq(1)
-      expect(weather_forecast[:errors].first).to have_key(:detail)
-      expect(weather_forecast[:errors].first[:detail]).to eq('Invalid location. Please provide a valid city and state location.')
+      expect(error[:errors].first[:detail]).to eq('Invalid location. Please provide a valid city and state location.')
     end
   end
 end
