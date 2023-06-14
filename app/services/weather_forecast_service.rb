@@ -1,6 +1,4 @@
 class WeatherForecastService
-  BASE_URL = 'https://api.weatherapi.com'.freeze
-
   def get_forecast(coordinates)
     param = "#{coordinates[:lat]},#{coordinates[:lng]}"
     weather_data = get_url('/v1/forecast.json?', param)
@@ -54,7 +52,7 @@ class WeatherForecastService
 
   def conn(param)
     Faraday.new(
-      url: BASE_URL,
+      url: 'https://api.weatherapi.com',
       headers: { 'Content-Type' => 'application/json' },
       params: {
         key: ENV['WEATHER_API_KEY'],

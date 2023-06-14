@@ -5,10 +5,10 @@ RSpec.describe MapQuestService, type: :services, vcr: { record: :new_episodes } 
     describe '#get_city_lat_lon' do
       it "returns the latitude and longitude coordinates of a city" do
         expected = {
-          lat: 38.89037,
-          lng: -77.03196
+          lat: 39.74001,
+          lng: -104.99202
         }
-        expect(MapQuestService.new.get_city_lat_lng('Washington', 'DC'))
+        expect(MapQuestService.new.get_city_lat_lng('denver', 'co'))
           .to eq(expected)
       end
     end

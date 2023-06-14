@@ -22,6 +22,7 @@ class BoredApiService
   def conn
     Faraday.new(
       url: 'http://www.boredapi.com',
-      headers: { 'Content-Type' => 'application/json' })
+      headers: { 'Content-Type' => 'application/json' }
+    )
   end
 end

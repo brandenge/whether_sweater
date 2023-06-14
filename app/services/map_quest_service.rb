@@ -1,6 +1,4 @@
 class MapQuestService
-  BASE_URL = 'https://www.mapquestapi.com'.freeze
-
   def get_city_lat_lng(city, state)
     url = "/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{city.capitalize},#{state.upcase}"
     location_data = get_url(url)
@@ -15,7 +13,9 @@ class MapQuestService
   end
 
   def conn
-    Faraday.new(url: BASE_URL,
-      headers: { 'Content-Type' => 'application/json' })
+    Faraday.new(
+      url: 'https://www.mapquestapi.com',
+      headers: { 'Content-Type' => 'application/json' }
+    )
   end
 end
