@@ -1,11 +1,20 @@
 class WeatherForecastService
   def get_forecast(lat, lng)
     param = "#{lat},#{lng}"
-    weather_data = get_url('/v1/forecast.json?', param)
+    weather_data = get_url('/v1/forecast.json?', param, 5)
     if weather_data.has_key?(:error)
       raise CustomError.new(weather_data[:error][:message], 400)
     end
     format_weather_data(weather_data)
+  end
+
+  def get_future_day_forecast(lat, lng, days)
+    param = "#{lat},#{lng}"
+    weather_data = get_url('/v1/forecast.json?', param, days)
+    if weather_data.has_key?(:error)
+      raise CustomError.new(weather_data[:error][:message], 400)
+    end
+    weather_data[:forecast][:forecastday].last
   end
 
   private
@@ -48,19 +57,19 @@ class WeatherForecastService
     }
   end
 
-  def get_url(url, param)
-    response = conn(param).get(url)
+  def get_url(url, param, days)
+    response = conn(param, days).get(url)
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def conn(param)
+  def conn(param, days)
     Faraday.new(
       url: 'https://api.weatherapi.com',
       headers: { 'Content-Type' => 'application/json' },
       params: {
         key: ENV['WEATHER_API_KEY'],
         q: param,
-        days: 5
+        days: days
       }
     )
   end

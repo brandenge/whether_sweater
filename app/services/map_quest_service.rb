@@ -8,7 +8,7 @@ class MapQuestService
   end
 
   def get_route(origin, destination)
-    url = "/directions/v2/route?key=#{ENV['MAP_QUEST_API_KEY']}&from=#{origin}&to#{destination}"
+    url = "/directions/v2/route?key=#{ENV['MAP_QUEST_API_KEY']}&from=#{origin}&to=#{destination}"
     route_data = get_url(url)
     is_possible_route = route_data[:info][:messages].empty?
     {
