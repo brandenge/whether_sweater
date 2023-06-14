@@ -9,17 +9,19 @@ class RoadTripFacade
     route = map_facade.get_route(origin, destination)
     is_impossible_route = route[:travel_time] == 'impossible route'
     if is_impossible_route
-      weather_at_eta = {}
+      road_trip = route
+      road_trip[:weather_at_eta] = {}
     else
       days = route[:travel_time] / 86400
       forecast = WeatherForecastService.new.get_future_day_forecast(coords[:lat], coords[:lng], days + 1)
       weather_at_eta = get_weather_at_eta(forecast, route[:travel_time], days)
-    end
-    road_trip = route
-    time = Time.now + route[:travel_time]
 
-    road_trip[:travel_time] = "#{time.hour}:#{time.min}:#{time.sec}"
-    road_trip[:weather_at_eta] = weather_at_eta
+      road_trip = route
+      time = Time.now + route[:travel_time]
+
+      road_trip[:travel_time] = "#{time.hour}:#{time.min}:#{time.sec}"
+      road_trip[:weather_at_eta] = weather_at_eta
+    end
     RoadTrip.new(road_trip)
   end
 
