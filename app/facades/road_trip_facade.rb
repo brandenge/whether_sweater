@@ -17,9 +17,11 @@ class RoadTripFacade
       weather_at_eta = get_weather_at_eta(forecast, route[:travel_time], days)
 
       road_trip = route
-      time = Time.now + route[:travel_time]
+      hours = route[:travel_time] / 3600
+      minutes = (route[:travel_time] % 3600) / 60
+      seconds = ((route[:travel_time] % 3600) % 60) / 60
 
-      road_trip[:travel_time] = "#{time.hour}:#{time.min}:#{time.sec}"
+      road_trip[:travel_time] = "#{hours}:#{minutes}:#{seconds}"
       road_trip[:weather_at_eta] = weather_at_eta
     end
     RoadTrip.new(road_trip)
