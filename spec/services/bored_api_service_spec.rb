@@ -11,6 +11,7 @@ RSpec.describe BoredApiService, type: :services, vcr: { record: :new_episodes } 
 
         actual.map do |activity|
           expect(activity).to be_a(Hash)
+          expect(activity.keys.count).to eq(7)
           expect(activity).to have_key(:activity)
           expect(activity).to have_key(:type)
           expect(activity).to have_key(:participants)
