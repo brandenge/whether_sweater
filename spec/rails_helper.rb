@@ -24,6 +24,8 @@ require './spec/fixtures/hourly_weather_fixture.rb'
 include HourlyWeatherFixture
 require './spec/fixtures/activity_fixture.rb'
 include ActivityFixture
+require './spec/fixtures/road_trip_fixture.rb'
+include RoadTripFixture
 
 def check_valid_error_response(error)
   expect(error).to be_a(Hash)
