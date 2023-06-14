@@ -1,80 +1,104 @@
 require 'rails_helper'
 
 RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes } do
-  it 'returns the weather forecast for the given city' do
-    get api_v0_forecast_path({ location: 'cincinatti,oh' })
+  context 'Happy path - valid and known location' do
+    it 'returns the weather forecast for the given city' do
+      get api_v0_forecast_path({ location: 'cincinatti,oh' })
 
-    expect(response).to be_successful
-    expect(response.status).to eq(200)
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
 
-    weather_forecast = JSON.parse(response.body, symbolize_names: true)
+      weather_forecast = JSON.parse(response.body, symbolize_names: true)
 
-    expect(weather_forecast).to be_a(Hash)
-    expect(weather_forecast.keys.count).to eq(1)
-    expect(weather_forecast).to have_key(:data)
+      expect(weather_forecast).to be_a(Hash)
+      expect(weather_forecast.keys.count).to eq(1)
+      expect(weather_forecast).to have_key(:data)
 
-    data = weather_forecast[:data]
-    expect(data).to be_a(Hash)
-    expect(data.keys.count).to eq(3)
-    expect(data).to have_key(:id)
-    expect(data).to have_key(:type)
-    expect(data).to have_key(:attributes)
+      data = weather_forecast[:data]
+      expect(data).to be_a(Hash)
+      expect(data.keys.count).to eq(3)
+      expect(data).to have_key(:id)
+      expect(data).to have_key(:type)
+      expect(data).to have_key(:attributes)
 
-    expect(data[:id]).to eq(nil)
-    expect(data[:type]).to eq('forecast')
+      expect(data[:id]).to eq(nil)
+      expect(data[:type]).to eq('forecast')
 
-    expect(data[:attributes]).to be_a(Hash)
-    expect(data[:attributes].keys.count).to eq(3)
-    expect(data[:attributes]).to have_key(:current_weather)
-    expect(data[:attributes]).to have_key(:daily_weather)
-    expect(data[:attributes]).to have_key(:hourly_weather)
+      expect(data[:attributes]).to be_a(Hash)
+      expect(data[:attributes].keys.count).to eq(3)
+      expect(data[:attributes]).to have_key(:current_weather)
+      expect(data[:attributes]).to have_key(:daily_weather)
+      expect(data[:attributes]).to have_key(:hourly_weather)
 
-    current_weather = data[:attributes][:current_weather]
-    expect(current_weather).to be_a(Hash)
-    expect(current_weather.keys.count).to eq(8)
-    expect(current_weather[:last_updated]).to be_a(String)
-    expect(current_weather[:temperature]).to be_a(Numeric)
-    expect(current_weather[:feels_like]).to be_a(Numeric)
-    expect(current_weather[:humidity]).to be_a(Numeric)
-    expect(current_weather[:uvi]).to be_a(Numeric)
-    expect(current_weather[:visibility]).to be_a(Numeric)
-    expect(current_weather[:condition]).to be_a(String)
-    expect(current_weather[:icon]).to be_a(String)
+      current_weather = data[:attributes][:current_weather]
+      expect(current_weather).to be_a(Hash)
+      expect(current_weather.keys.count).to eq(8)
+      expect(current_weather[:last_updated]).to be_a(String)
+      expect(current_weather[:temperature]).to be_a(Numeric)
+      expect(current_weather[:feels_like]).to be_a(Numeric)
+      expect(current_weather[:humidity]).to be_a(Numeric)
+      expect(current_weather[:uvi]).to be_a(Numeric)
+      expect(current_weather[:visibility]).to be_a(Numeric)
+      expect(current_weather[:condition]).to be_a(String)
+      expect(current_weather[:icon]).to be_a(String)
 
-    expect(data[:attributes][:daily_weather]).to be_an(Array)
-    data[:attributes][:daily_weather].each do |daily_weather|
-      expect(daily_weather).to be_a(Hash)
-      expect(daily_weather.keys.count).to eq(7)
-      expect(daily_weather).to have_key(:date)
-      expect(daily_weather).to have_key(:sunrise)
-      expect(daily_weather).to have_key(:sunset)
-      expect(daily_weather).to have_key(:max_temp)
-      expect(daily_weather).to have_key(:min_temp)
-      expect(daily_weather).to have_key(:condition)
-      expect(daily_weather).to have_key(:icon)
+      expect(data[:attributes][:daily_weather]).to be_an(Array)
+      data[:attributes][:daily_weather].each do |daily_weather|
+        expect(daily_weather).to be_a(Hash)
+        expect(daily_weather.keys.count).to eq(7)
+        expect(daily_weather).to have_key(:date)
+        expect(daily_weather).to have_key(:sunrise)
+        expect(daily_weather).to have_key(:sunset)
+        expect(daily_weather).to have_key(:max_temp)
+        expect(daily_weather).to have_key(:min_temp)
+        expect(daily_weather).to have_key(:condition)
+        expect(daily_weather).to have_key(:icon)
 
-      expect(daily_weather[:date]).to be_a(String)
-      expect(daily_weather[:sunrise]).to be_a(String)
-      expect(daily_weather[:sunset]).to be_a(String)
-      expect(daily_weather[:max_temp]).to be_a(Numeric)
-      expect(daily_weather[:min_temp]).to be_a(Numeric)
-      expect(daily_weather[:condition]).to be_a(String)
-      expect(daily_weather[:icon]).to be_a(String)
+        expect(daily_weather[:date]).to be_a(String)
+        expect(daily_weather[:sunrise]).to be_a(String)
+        expect(daily_weather[:sunset]).to be_a(String)
+        expect(daily_weather[:max_temp]).to be_a(Numeric)
+        expect(daily_weather[:min_temp]).to be_a(Numeric)
+        expect(daily_weather[:condition]).to be_a(String)
+        expect(daily_weather[:icon]).to be_a(String)
+      end
+
+      expect(data[:attributes][:hourly_weather]).to be_an(Array)
+      data[:attributes][:hourly_weather].each do |hourly_weather|
+        expect(hourly_weather).to be_a(Hash)
+        expect(hourly_weather.keys.count).to eq(4)
+        expect(hourly_weather).to have_key(:time)
+        expect(hourly_weather).to have_key(:temperature)
+        expect(hourly_weather).to have_key(:condition)
+        expect(hourly_weather).to have_key(:icon)
+
+        expect(hourly_weather[:time]).to be_a(String)
+        expect(hourly_weather[:temperature]).to be_a(Numeric)
+        expect(hourly_weather[:condition]).to be_a(String)
+        expect(hourly_weather[:icon]).to be_a(String)
+      end
     end
+  end
 
-    expect(data[:attributes][:hourly_weather]).to be_an(Array)
-    data[:attributes][:hourly_weather].each do |hourly_weather|
-      expect(hourly_weather).to be_a(Hash)
-      expect(hourly_weather.keys.count).to eq(4)
-      expect(hourly_weather).to have_key(:time)
-      expect(hourly_weather).to have_key(:temperature)
-      expect(hourly_weather).to have_key(:condition)
-      expect(hourly_weather).to have_key(:icon)
+  context 'Sad path - invalid or unknown location' do
+    it 'returns a response with an error message' do
+      get api_v0_forecast_path({ location: 'argea432' })
 
-      expect(hourly_weather[:time]).to be_a(String)
-      expect(hourly_weather[:temperature]).to be_a(Numeric)
-      expect(hourly_weather[:condition]).to be_a(String)
-      expect(hourly_weather[:icon]).to be_a(String)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+
+      weather_forecast = JSON.parse(response.body, symbolize_names: true)
+
+      expect(weather_forecast).to be_a(Hash)
+      expect(weather_forecast.keys.count).to eq(1)
+      expect(weather_forecast).to have_key(:errors)
+
+      expect(weather_forecast[:errors]).to be_an(Array)
+      expect(weather_forecast[:errors].count).to eq(1)
+      expect(weather_forecast[:errors].first).to be_a(Hash)
+      expect(weather_forecast[:errors].first.keys.count).to eq(1)
+      expect(weather_forecast[:errors].first).to have_key(:detail)
+      expect(weather_forecast[:errors].first[:detail]).to eq('Invalid location. Please provide a valid city and state location.')
     end
   end
 end
