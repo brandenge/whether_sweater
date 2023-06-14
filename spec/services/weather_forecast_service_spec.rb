@@ -82,7 +82,13 @@ RSpec.describe WeatherForecastService, type: :services, vcr: { record: :new_epis
 
       context 'Sad path - invalid or unknown location' do
         it 'raises a custom error' do
-
+          expect { weather_forecast_service.get_forecast('%$#@', '%^&$') }.to raise_error(CustomError)
+          begin
+            weather_forecast_service.get_forecast('%$#@', '%^&$')
+          rescue CustomError => e
+            expect(e.message).to eq('No matching location found.')
+            expect(e.status).to eq(400)
+          end
         end
       end
     end
