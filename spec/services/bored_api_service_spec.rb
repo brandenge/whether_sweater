@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BoredApiService, type: :services, vcr: { record: :new_episodes } do
+RSpec.describe BoredApiService, type: :service, vcr: { record: :new_episodes } do
   subject(:bored_api_service) { BoredApiService.new }
 
   describe 'instance methods' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Activites', type: :request do
+RSpec.describe 'Activites', type: :request, vcr: { record: :new_episodes } do
   xit 'returns a collection of activities appropriate for the weather' do
     get api_v1_activities_path({ destination: 'chicago,il' })
     expect(response).to be_successful

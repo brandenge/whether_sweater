@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MapQuestService, type: :services, vcr: { record: :new_episodes } do
+RSpec.describe MapQuestService, type: :service, vcr: { record: :new_episodes } do
   subject(:map_quest_service) { MapQuestService.new }
 
   describe 'instance methods' do

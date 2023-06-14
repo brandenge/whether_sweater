@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'Create User', type: :requests do
+RSpec.describe 'Create User', type: :request, vcr: { record: :new_episodes } do
   context 'Happy path - valid request' do
     it 'creates a user' do
-      post users_path({
+      post api_v0_users_path({
         email: 'whatever@example.com',
         password: 'password',
         password_confirmation: 'password'
-      }.to_json)
+      })
 
       expect(response).to be_successful
       expect(response.status).to eq(201)
@@ -25,7 +25,7 @@ RSpec.describe 'Create User', type: :requests do
       expect(data).to have_key(:type)
       expect(data).to have_key(:attributes)
 
-      expect(data[:id]).to be_a(Integer)
+      expect(data[:id]).to be_a(String)
       expect(data[:type]).to eq('users')
 
       attributes = data[:attributes]
@@ -41,64 +41,11 @@ RSpec.describe 'Create User', type: :requests do
   end
 
   context 'Sad paths - invalid requests' do
-    it "returns an error message when the passwords don't match" do
-      post users_path({
-        email: 'whatever@example.com',
-        password: 'password',
-        password_confirmation: 'password1'
-      }.to_json)
-
-      expect(response).to_not be_successful
-      expect(response.status).to eq(422)
-
-      error = JSON.parse(response.body, symbolize_names: true)
-
-      expect(error).to be_a(Hash)
-      expect(error.keys.count).to eq(1)
-      expect(error).to have_key(:errors)
-
-      expect(error[:errors]).to be_an(Array)
-      expect(error[:errors].count).to eq(1)
-      expect(error[:errors].first).to be_a(Hash)
-      expect(error[:errors].first.keys.count).to eq(1)
-      expect(error[:errors].first).to have_key(:detail)
-      expect(error[:errors].first[:detail]).to be_a(String)
-      expect(error[:errors].first[:detail]).to eq('Invalid request. Password and password confirmation do not match.')
-    end
-
-    it 'returns an error message when the email is already taken' do
-      create(:user, email: 'whatever@example.com')
-
-      post users_path({
-        email: 'whatever@example.com',
-        password: 'password',
-        password_confirmation: 'password1'
-      }.to_json)
-
-      expect(response).to_not be_successful
-      expect(response.status).to eq(409)
-
-      error = JSON.parse(response.body, symbolize_names: true)
-
-      expect(error).to be_a(Hash)
-      expect(error.keys.count).to eq(1)
-      expect(error).to have_key(:errors)
-
-      expect(error[:errors]).to be_an(Array)
-      expect(error[:errors].count).to eq(1)
-      expect(error[:errors].first).to be_a(Hash)
-      expect(error[:errors].first.keys.count).to eq(1)
-      expect(error[:errors].first).to have_key(:detail)
-      expect(error[:errors].first[:detail]).to be_a(String)
-      expect(error[:errors].first[:detail]).to eq('Invalid request. Another registered user has already taken that email address')
-    end
-
     it 'returns an error message when a request field is missing' do
-      post users_path({
+      post api_v0_users_path({
         email: 'whatever@example.com',
-        password: 'password',
-        password_confirmation: 'password1'
-      }.to_json)
+        password: 'password'
+      })
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -116,6 +63,58 @@ RSpec.describe 'Create User', type: :requests do
       expect(error[:errors].first).to have_key(:detail)
       expect(error[:errors].first[:detail]).to be_a(String)
       expect(error[:errors].first[:detail]).to eq('Invalid request. Missing one or more request fields.')
+    end
+
+    it "returns an error message when the passwords don't match" do
+      post api_v0_users_path({
+        email: 'whatever@example.com',
+        password: 'password',
+        password_confirmation: 'password1'
+      })
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(422)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error).to be_a(Hash)
+      expect(error.keys.count).to eq(1)
+      expect(error).to have_key(:errors)
+
+      expect(error[:errors]).to be_an(Array)
+      expect(error[:errors].count).to eq(1)
+      expect(error[:errors].first).to be_a(Hash)
+      expect(error[:errors].first.keys.count).to eq(1)
+      expect(error[:errors].first).to have_key(:detail)
+      expect(error[:errors].first[:detail]).to be_a(String)
+      expect(error[:errors].first[:detail]).to eq('Invalid request. The password and password confirmation do not match.')
+    end
+
+    it 'returns an error message when the email is already taken' do
+      create(:user, email: 'whatever@example.com')
+
+      post api_v0_users_path({
+        email: 'whatever@example.com',
+        password: 'password',
+        password_confirmation: 'password'
+      })
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(409)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error).to be_a(Hash)
+      expect(error.keys.count).to eq(1)
+      expect(error).to have_key(:errors)
+
+      expect(error[:errors]).to be_an(Array)
+      expect(error[:errors].count).to eq(1)
+      expect(error[:errors].first).to be_a(Hash)
+      expect(error[:errors].first.keys.count).to eq(1)
+      expect(error[:errors].first).to have_key(:detail)
+      expect(error[:errors].first[:detail]).to be_a(String)
+      expect(error[:errors].first[:detail]).to eq('Invalid request. Another registered user has already taken that email address')
     end
   end
 end

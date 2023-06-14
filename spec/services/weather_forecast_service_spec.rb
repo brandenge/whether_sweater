@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WeatherForecastService, type: :services, vcr: { record: :new_episodes } do
+RSpec.describe WeatherForecastService, type: :service, vcr: { record: :new_episodes } do
   subject(:weather_forecast_service) { WeatherForecastService.new }
 
   describe 'instance methods' do
