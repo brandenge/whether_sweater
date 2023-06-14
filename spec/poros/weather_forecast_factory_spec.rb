@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WeatherForecast, type: :poros do
+RSpec.describe WeatherForecast do
   subject(:weather_forecast) { create(:weather_forecast) }
 
   describe '#initialize' do

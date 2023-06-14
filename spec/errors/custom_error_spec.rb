@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CustomError, type: :errors do
+RSpec.describe CustomError do
   subject(:custom_error) { CustomError.new('Custom error message.', 400) }
 
   describe '#initialize' do

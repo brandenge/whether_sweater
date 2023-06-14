@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CurrentWeather, type: :poros do
+RSpec.describe CurrentWeather do
   subject(:current_weather) do
     CurrentWeather.new(CurrentWeatherFixture::ATTRIBUTES)
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Activity, type: :poros do
+RSpec.describe Activity do
   subject(:activity) { Activity.new(ActivityFixture::ATTRIBUTES) }
 
   describe '#initialize' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HourlyWeather, type: :poros do
+RSpec.describe HourlyWeather do
   subject(:hourly_weather) do
      HourlyWeather.new(HourlyWeatherFixture::ATTRIBUTES)
   end

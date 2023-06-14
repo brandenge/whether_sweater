@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DailyWeather, type: :poros do
+RSpec.describe DailyWeather do
   subject(:daily_weather) do
      DailyWeather.new(DailyWeatherFixture::ATTRIBUTES)
   end

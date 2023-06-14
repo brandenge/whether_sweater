@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
+RSpec.describe LocationFacade, vcr: { record: :new_episodes } do
   subject(:location_facade) { LocationFacade.new }
 
   describe 'instance methods' do

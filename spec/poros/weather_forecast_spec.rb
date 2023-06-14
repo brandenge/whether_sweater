@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WeatherForecast, type: :poros do
+RSpec.describe WeatherForecast do
   subject(:weather_forecast) do
     WeatherForecast.new(**WeatherForecastFixture::ATTRIBUTES)
   end

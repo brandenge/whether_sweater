@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ActivitiesFacade, type: :facades, vcr: { record: :new_episodes } do
+RSpec.describe ActivitiesFacade, vcr: { record: :new_episodes } do
   subject(:activities_facade) { ActivitiesFacade.new }
 
   describe 'instance methods' do

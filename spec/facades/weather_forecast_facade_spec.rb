@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WeatherForecastFacade, type: :facades, vcr: { record: :new_episodes } do
+RSpec.describe WeatherForecastFacade, vcr: { record: :new_episodes } do
   subject(:weather_forecast_facade) { WeatherForecastFacade.new }
 
   describe 'instance methods' do
