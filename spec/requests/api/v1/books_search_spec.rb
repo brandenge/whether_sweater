@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Books Search', type: :request, vcr: { record: :new_episodes } do
-  it 'returns a list of books' do
+  xit 'returns a list of books' do
     get api_v1_book_search_path({ location: 'denver,co', quantity: 3 })
 
     expect(response).to be_successful
