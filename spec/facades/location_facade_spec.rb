@@ -7,6 +7,12 @@ RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
         it 'returns a custom error for an invalid location' do
           expect { LocationFacade.new.get_city_lat_lng('#@$O@#(%)') }
             .to raise_error(CustomError)
+            begin
+              LocationFacade.new.get_city_lat_lng('Ggeim,FG')
+            rescue CustomError => e
+              expect(e.message).to eq('Invalid location. Please provide a valid city and state location.')
+              expect(e.status).to eq(400)
+            end
         end
       end
 
@@ -14,6 +20,12 @@ RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
         it 'returns a custom error for a location not found' do
           expect { LocationFacade.new.get_city_lat_lng('Ggeim,FG') }
             .to raise_error(CustomError)
+          begin
+            LocationFacade.new.get_city_lat_lng('Ggeim,FG')
+          rescue CustomError => e
+            expect(e.message).to eq('No location found. Please provide a known location query parameter.')
+            expect(e.status).to eq(400)
+          end
         end
       end
 
