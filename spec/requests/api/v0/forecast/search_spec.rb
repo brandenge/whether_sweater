@@ -104,7 +104,7 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
 
       check_valid_error_response(error)
 
-      expect(error[:errors].first[:detail]).to eq('Invalid location. Please provide a valid city and state location.')
+      expect(error[:errors].first[:detail]).to eq('No location found. Please provide a known location query parameter.')
     end
   end
 end

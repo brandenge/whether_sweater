@@ -1,6 +1,6 @@
 class MapQuestService
-  def get_city_lat_lng(city, state)
-    url = "/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{city.capitalize},#{state.upcase}"
+  def get_city_lat_lng(location)
+    url = "/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{location}"
     location_data = get_url(url)
     messages = location_data[:info][:messages]
     if valid_location?(location_data)
@@ -9,7 +9,11 @@ class MapQuestService
   end
 
   def get_directions(origin, destination)
+    url = "/directions/v2/route?key=#{ENV['MAP_QUEST_API_KEY']}&from=#{origin}&to#{destination}"
+    direction_data = get_url(url)
+    {
 
+    }
   end
 
   private
@@ -18,8 +22,6 @@ class MapQuestService
     messages = location_data[:info][:messages]
     if location_data[:results].first[:locations].first[:source] == 'FALLBACK'
       raise CustomError.new('No location found. Please provide a known location query parameter.', 400)
-    elsif !messages.empty?
-      raise CustomError.new(messages.first, 400)
     else
       true
     end

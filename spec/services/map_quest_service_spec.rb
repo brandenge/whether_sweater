@@ -10,7 +10,7 @@ RSpec.describe MapQuestService, vcr: { record: :new_episodes } do
           lat: 39.74001,
           lng: -104.99202
         }
-        expect(map_quest_service.get_city_lat_lng('denver', 'co'))
+        expect(map_quest_service.get_city_lat_lng('denver,co'))
           .to eq(expected)
       end
     end
