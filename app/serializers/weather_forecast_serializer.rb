@@ -6,15 +6,16 @@ class WeatherForecastSerializer
   set_type :forecast
 
   attribute :current_weather do |weather_forecast|
+    current_weather = weather_forecast.current_weather
     {
-      last_updated: weather_forecast.current_weather.last_updated,
-      temperature: weather_forecast.current_weather.temperature,
-      feels_like: weather_forecast.current_weather.feels_like,
-      humidity: weather_forecast.current_weather.humidity,
-      uvi: weather_forecast.current_weather.uvi,
-      visibility: weather_forecast.current_weather.visibility,
-      condition: weather_forecast.current_weather.condition,
-      icon: weather_forecast.current_weather.icon
+      last_updated: current_weather.last_updated,
+      temperature: current_weather.temperature,
+      feels_like: current_weather.feels_like,
+      humidity: current_weather.humidity,
+      uvi: current_weather.uvi,
+      visibility: current_weather.visibility,
+      condition: current_weather.condition,
+      icon: current_weather.icon
     }
   end
   attribute :daily_weather do |weather_forecast|
