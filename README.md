@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version - 3.1.1p18
+* Rails version - 7.05
 
-Things you may want to cover:
+* Setup
 
-* Ruby version
+To get started, first run `bundle install` to install all gem dependancies for the application.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
+Next, run `rails db:{drop,create,migrate}` to setup the database.
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run the test suite, run `bundle exec rspec`.
