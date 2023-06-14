@@ -62,6 +62,22 @@ RSpec.describe WeatherForecastFacade, type: :facades, vcr: { record: :new_episod
               .to be_a(String)
         end
       end
+
+      context 'Sad path - invalid or unknown location' do
+        it 'raises a custom error' do
+          coordinates = {
+            lat: '%$#@',
+            lng: '%^&$'
+          }
+          expect { weather_forecast_facade.get_forecast(coordinates) }.to raise_error(CustomError)
+          begin
+            weather_forecast_facade.get_forecast(coordinates)
+          rescue CustomError => e
+            expect(e.message).to eq('No matching location found.')
+            expect(e.status).to eq(400)
+          end
+        end
+      end
     end
   end
 end

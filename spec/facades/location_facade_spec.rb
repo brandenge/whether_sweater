@@ -16,7 +16,7 @@ RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
         end
       end
 
-      context 'Sad path - invalid city and state location' do
+      context 'Sad paths - invalid request' do
         it 'returns a custom error for an invalid location' do
           expect { location_facade.get_city_lat_lng('#@$O@#(%)') }
             .to raise_error(CustomError)
@@ -27,9 +27,7 @@ RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
             expect(e.status).to eq(400)
           end
         end
-      end
 
-      context 'Sad path - city and state location not found' do
         it 'returns a custom error for a location not found' do
           expect { location_facade.get_city_lat_lng('Ggeim,FG') }
             .to raise_error(CustomError)
