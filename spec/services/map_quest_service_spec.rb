@@ -31,8 +31,8 @@ RSpec.describe MapQuestService, vcr: { record: :new_episodes } do
     end
 
     describe '#get_route' do
-      context 'Happy path - valid origin and destination' do
-        it 'returns route data' do
+      context 'possible route' do
+        it 'returns route data with a travel time' do
           actual = map_quest_service.get_route('chicago,il', 'denver,co')
           expect(actual).to be_a(Hash)
           expect(actual.keys.count).to eq(3)
@@ -46,7 +46,7 @@ RSpec.describe MapQuestService, vcr: { record: :new_episodes } do
         end
       end
 
-      context 'Sad path - impossible route' do
+      context 'impossible route' do
         it 'returns route data with the travel time set to impossible route' do
           actual = map_quest_service.get_route('chicago,il', 'denver,co')
           expect(actual).to be_a(Hash)
