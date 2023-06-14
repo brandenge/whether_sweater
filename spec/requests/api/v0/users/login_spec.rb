@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Create User', type: :request, vcr: { record: :new_episodes } do
   context 'Happy path - valid request' do
     it 'creates a user' do
+      create(:user, email: 'whatever@example.com', password: 'password', password_confirmation: 'password')
+
       post api_v0_login_path({
         email: 'whatever@example.com',
         password: 'password'

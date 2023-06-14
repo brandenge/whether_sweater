@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v0 do
-      resources :users, only: [:create]
       get 'forecast' => 'forecast#search'
+      post 'sessions' => 'users#login', as: :login
+      resources :users, only: [:create]
     end
 
     namespace :v1 do
