@@ -25,19 +25,19 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
     expect(data[:attributes]).to have_key(:current_weather)
     expect(data[:attributes]).to have_key(:daily_weather)
     expect(data[:attributes]).to have_key(:hourly_weather)
-    expect(data[:current_weather]).to be_a(Hash)
-    expect(data[:daily_weather]).to be_an(Array)
-    expect(data[:hourly_weather]).to be_an(Array)
 
-    expect(data[:attributes][:current_weather].last_updated).to be_a(String)
-    expect(data[:attributes][:current_weather].temperature).to be_a(Numeric)
-    expect(data[:attributes][:current_weather].feels_like).to be_a(Numeric)
-    expect(data[:attributes][:current_weather].humidity).to be_a(Numeric)
-    expect(data[:attributes][:current_weather].uvi).to be_a(Numeric)
-    expect(data[:attributes][:current_weather].visibility).to be_a(Numeric)
-    expect(data[:attributes][:current_weather].condition).to be_a(String)
-    expect(data[:attributes][:current_weather].icon).to be_a(String)
+    current_weather = data[:attributes][:current_weather]
+    expect(current_weather).to be_a(Hash)
+    expect(current_weather[:last_updated]).to be_a(String)
+    expect(current_weather[:temperature]).to be_a(Numeric)
+    expect(current_weather[:feels_like]).to be_a(Numeric)
+    expect(current_weather[:humidity]).to be_a(Numeric)
+    expect(current_weather[:uvi]).to be_a(Numeric)
+    expect(current_weather[:visibility]).to be_a(Numeric)
+    expect(current_weather[:condition]).to be_a(String)
+    expect(current_weather[:icon]).to be_a(String)
 
+    expect(data[:attributes][:daily_weather]).to be_an(Array)
     data[:attributes][:daily_weather].each do |daily_weather|
       expect(daily_weather).to be_a(Hash)
       expect(daily_weather).to have_key(:date)
@@ -57,11 +57,12 @@ RSpec.describe 'Weather Forecast', type: :request, vcr: { record: :new_episodes 
       expect(daily_weather[:icon]).to be_a(String)
     end
 
+    expect(data[:attributes][:hourly_weather]).to be_an(Array)
     data[:attributes][:hourly_weather].each do |hourly_weather|
       expect(hourly_weather).to be_a(Hash)
       expect(hourly_weather).to have_key(:time)
       expect(hourly_weather).to have_key(:temperature)
-      expect(hourly_weather).to have_key(:conditions)
+      expect(hourly_weather).to have_key(:condition)
       expect(hourly_weather).to have_key(:icon)
 
       expect(hourly_weather[:time]).to be_a(String)
