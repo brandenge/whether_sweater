@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe BoredApiService, type: :services, vcr: { record: :new_episodes } do
+  subject(:bored_api_service) { BoredApiService.new }
+
   describe 'instance methods' do
     describe '#bored_api' do
       it 'returns the latitude and longitude coordinates of a city' do
-        actual = BoredApiService.new.get_activities_for_weather(65)
+        actual = bored_api_service.get_activities_for_weather(65)
 
         expect(actual).to be_a(Array)
         expect(actual.count).to eq(2)

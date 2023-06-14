@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe MapQuestService, type: :services, vcr: { record: :new_episodes } do
+  subject(:map_quest_service) { MapQuestService.new }
+
   describe 'instance methods' do
     describe '#get_city_lat_lon' do
       it "returns the latitude and longitude coordinates of a city" do
@@ -8,7 +10,7 @@ RSpec.describe MapQuestService, type: :services, vcr: { record: :new_episodes } 
           lat: 39.74001,
           lng: -104.99202
         }
-        expect(MapQuestService.new.get_city_lat_lng('denver', 'co'))
+        expect(map_quest_service.get_city_lat_lng('denver', 'co'))
           .to eq(expected)
       end
     end
