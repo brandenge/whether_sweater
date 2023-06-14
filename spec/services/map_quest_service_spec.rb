@@ -29,5 +29,38 @@ RSpec.describe MapQuestService, vcr: { record: :new_episodes } do
         end
       end
     end
+
+    describe '#get_route' do
+      context 'Happy path - valid origin and destination' do
+        it 'returns route data' do
+          actual = map_quest_service.get_route('chicago,il', 'denver,co')
+          expect(actual).to be_a(Hash)
+          expect(actual.keys.count).to eq(3)
+          expect(actual).to have_key(:start_city)
+          expect(actual).to have_key(:end_city)
+          expect(actual).to have_key(:travel_time)
+
+          expect(actual[:start_city]).to be_a(String)
+          expect(actual[:end_city]).to be_a(String)
+          expect(actual[:travel_time]).to be_a(String)
+        end
+      end
+
+      context 'Sad path - impossible route' do
+        it 'returns route data with the travel time set to impossible route' do
+          actual = map_quest_service.get_route('chicago,il', 'denver,co')
+          expect(actual).to be_a(Hash)
+          expect(actual.keys.count).to eq(3)
+          expect(actual).to have_key(:start_city)
+          expect(actual).to have_key(:end_city)
+          expect(actual).to have_key(:travel_time)
+
+          expect(actual[:start_city]).to be_a(String)
+          expect(actual[:end_city]).to be_a(String)
+          expect(actual[:travel_time]).to be_a(String)
+          expect(actual[:travel_time]).to eq('impossible route')
+        end
+      end
+    end
   end
 end
