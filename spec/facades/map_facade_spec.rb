@@ -42,13 +42,13 @@ RSpec.describe MapFacade, vcr: { record: :new_episodes } do
 
           expect(actual[:start_city]).to be_a(String)
           expect(actual[:end_city]).to be_a(String)
-          expect(actual[:travel_time]).to be_a(String)
+          expect(actual[:travel_time]).to be_a(Numeric)
         end
       end
 
       context 'impossible route' do
         it 'returns route data with the travel time set to impossible route' do
-          actual = map_facade.get_route('chicago,il', 'denver,co')
+          actual = map_facade.get_route('chicago,il', 'honolulu,hi')
           expect(actual).to be_a(Hash)
           expect(actual.keys.count).to eq(3)
           expect(actual).to have_key(:start_city)

@@ -1,7 +1,7 @@
 class ActivitiesSerializer
   include JSONAPI::Serializer
 
-  set_id nil
+  set_id { |_| nil }
 
   attributes :destination
   attributes :forecast do

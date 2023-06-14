@@ -1,8 +1,8 @@
 class RoadTripSerializer
   include JSONAPI::Serializer
 
-  set_id nil
-  set_type 'roadtrip'
+  set_id { |_| nil }
+  set_type 'road_trip'
 
   attributes :start_city,
              :end_city,

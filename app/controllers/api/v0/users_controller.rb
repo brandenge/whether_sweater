@@ -13,6 +13,7 @@ class Api::V0::UsersController < ApplicationController
   def login
     if valid_login?
       user = User.find_by(email: params[:email])
+      session[:user_id] = user.id
       render json: UserSerializer.new(user).serializable_hash.to_json, status: 200
     end
   end
