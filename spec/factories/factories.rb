@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :user do
+    email { Faker::Internet.email }
+    password { Faker::Internet.password }
+    api_key { Faker::Crypto.md5 }
+  end
+
   current_temperature = Faker::Number.between(from: 0, to: 90)
   current_date = Faker::Time.between(from: DateTime.now - 10, to: DateTime.now)
 
