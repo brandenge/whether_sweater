@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v0 do
       get 'forecast' => 'forecast#search'
       post 'sessions' => 'users#login', as: :login
+      post 'road_trip' => 'road_trip#create', as: :road_trip
       resources :users, only: [:create]
     end
 
