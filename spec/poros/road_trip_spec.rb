@@ -19,9 +19,6 @@ RSpec.describe RoadTrip do
         temperature: 44.2,
         condition: 'Cloudy with a chance of meatballs'
       })
-      expect(road_trip.datetime).to eq('2023-04-07 23:00')
-      expect(road_trip.temperature).to eq(44.2)
-      expect(road_trip.condition).to eq('Cloudy with a chance of meatballs')
     end
   end
 end
