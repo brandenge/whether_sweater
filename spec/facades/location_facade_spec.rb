@@ -8,7 +8,7 @@ RSpec.describe LocationFacade, type: :facades, vcr: { record: :new_episodes } do
           lat: 38.89037,
           lng: -77.03196
         }
-        expect(LocationFacade.new.get_city_lat_lng('Washington', 'DC'))
+        expect(LocationFacade.new.get_city_lat_lng('washington,dc'))
           .to eq(expected)
       end
     end
